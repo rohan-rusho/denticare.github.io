@@ -493,7 +493,175 @@ header.right {
 	text-transform: capitalize;
 }
 
+/*------------ 
+        --------view product section---- 
+-----------------*/
+.show-container {
+	padding: 8% 0;
+	text-align: center;
+}
 
+.show-container .box {
+	position: relative;
+	line-height: 1.7;
+	overflow: hidden;
+	/* Prevents overflow of the image on hover */
+}
+
+.show-container .image {
+	width: 100%;
+	height: 30rem;
+	object-fit: cover;
+	transition: transform 0.5s ease, box-shadow 0.5s ease;
+	/* Smooth transition effect */
+}
+
+/* Hover Effect for Image */
+.show-container .image:hover {
+	transform: scale(1.05);
+	/* Slightly enlarge image */
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+	/* Add shadow effect */
+}
+
+.show-container .status {
+	position: absolute;
+	left: 5%;
+	top: 5%;
+	text-transform: uppercase;
+	background-color: rgba(36, 36, 36, 0.6);
+	/* Semi-transparent background */
+	color: limegreen;
+	/* Adjust color for "active" status */
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 1rem;
+	/* Reduced font size */
+}
+
+/* You can use this code for "deactive" status with different color if needed */
+.show-container .status.deactive {
+	color: crimson;
+	/* Adjust color for "deactive" status */
+}
+
+.show-container .title {
+	font-size: 2rem;
+	text-transform: capitalize;
+	text-align: center;
+	font-weight: bold;
+}
+
+.post-editor img {
+	width: 100%;
+}
+
+.show-container h2 {
+	text-align: center;
+	text-transform: capitalize;
+	font-weight: 500;
+}
+
+.show-container h2 span {
+	margin-left: .6rem;
+	color: crimson;
+}
+
+.show-container .price {
+	position: absolute;
+	right: 5%;
+	top: 5%;
+	font-size: 1.2rem;
+	/* Reduced font size */
+	color: crimson;
+	font-weight: bold;
+	padding: 0.5rem 1rem;
+	/* Adjust padding for rectangle shape */
+	border-radius: 20px;
+	/* Rounds the corners */
+	background-color: #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	text-align: center;
+}
+
+.show-container .flex-btn .btn {
+	text-align: center;
+	padding: .5rem 1rem;
+	width: 33%;
+}
+
+/*------------
+		--------reading screen section----
+-----------------*/
+.read-container {
+	display: flex;
+	flex-direction: column;
+	border-radius: .5rem;
+}
+
+.read-container form {
+	width: 100%;
+	border-radius: .5rem;
+	padding: 2rem;
+	box-shadow: var(--box-shadow);
+	position: relative;
+}
+
+.read-container form .status {
+	padding: .5rem 3rem;
+	font-size: 1.1rem;
+	display: inline-block;
+	text-transform: uppercase;
+}
+
+.read-container form .price {
+	position: absolute;
+	top: 5%;
+	right: 5%;
+	font-weight: bold;
+	font-size: 2rem;
+}
+
+.read-container form .image {
+	width: 100%;
+	border-radius: .5rem;
+	margin-top: 1.5rem;
+}
+
+.read-container form .name {
+	color: var(--main-color);
+	font-size: 2.5rem;
+	margin-top: 1.5rem;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.read-container form .email {
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 1.5;
+}
+
+.read-container form .profession {
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.read-container form .content {
+	line-height: 2;
+	font-size: 1.2rem;
+	padding: 1rem 0;
+}
+
+.read-container form .flex-btn {
+	justify-content: space-between;
+}
+
+.read-container form .flex-btn .btn {
+	width: 33%;
+	text-align: center;
+}
 
 
 
