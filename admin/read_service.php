@@ -10,6 +10,22 @@ if (isset($_COOKIE['admin_id'])) {
 }
    $get_id = $_GET['post_id'];
 
+   if(isset($_POST['delete'])){
+    $service_id = $_POST['service_id'];
+    $service_id = filter_var($service_id, FILTER_SANITIZE_STRING);
+
+    $delete_image = $conn->prepare("SELECT * FROM `services` WHERE id = ?");
+    $delete_image->execute([$service_id]);
+    $fetch_delete_image = $delete_image->fetch(PDO::FETCH_ASSOC);
+
+    if ($fetch_delete_image[''] != ''){
+        unlink('../uploaded_files/'.$fetch_delete_image['image']);      
+    }
+
+    $delete_service = $conn->prepare("DELETE FROM `services` WHERE id = ?");
+    header('location: view_service.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +34,7 @@ if (isset($_COOKIE['admin_id'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DentiCare - Dental Clinic Website Template</title>
+    <title>DentiCare - Dental Clinic Website</title>
 
     <!-- Font Awesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -34,7 +50,7 @@ if (isset($_COOKIE['admin_id'])) {
             <div class="heading">
                 <h1><img src="../image/separator.png">Service details<img src="../image/separator.png"></h1>
             </div>
-            <div class="box-container">
+            <div class="container">
                 <?php
                 $select_services = $conn->prepare("SELECT * FROM `services` WHERE id =?");
                 $select_services->execute([$get_id]);

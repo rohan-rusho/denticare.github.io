@@ -194,7 +194,17 @@ section,
 	padding: 4% 0;
 }
 
-.form-container form {
+/* .form-container {
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	/* Subtle shadow
+} */
+
+*/ .form-container form {
 	background-color: var(--white-alfa-25);
 	border: 2px solid var(--white-alfa-40);
 	backdrop-filter: var(--backdrop-filter);
@@ -494,7 +504,7 @@ header.right {
 }
 
 /*------------ 
-        --------view product section---- 
+        --------view services section---- 
 -----------------*/
 .show-container {
 	padding: 8% 0;
@@ -617,7 +627,7 @@ header.right {
 
 .read-container form .price {
 	position: absolute;
-	top: 5%;
+	top: 3%;
 	right: 5%;
 	font-weight: bold;
 	font-size: 2rem;
@@ -663,8 +673,9 @@ header.right {
 	text-align: center;
 }
 
-
-
+.post-editor .image {
+	width: 100%;
+}
 
 /*------------
 		--------media screen section----
