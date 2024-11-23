@@ -75,34 +75,18 @@ Push your changes and submit a pull request.
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-markdown
+Connect with Me
+Facebook
+Instagram
+sql
 Copy code
 
-### Key Markdown Elements:
+Now, your Facebook and Instagram links are included in the **Connect with Me** section at the end of the README file!
 
-1. **Headers**: Use `#` for large headers and more `#` for smaller sub-headers:
-   - `# Heading 1`
-   - `## Heading 2`
-   - `### Heading 3`
-   
-2. **Bold Text**: Wrap text with `**` to make it bold:
-   - `**Bold text**`
-   
-3. **Italic Text**: Wrap text with `*` for italics:
-   - `*Italic text*`
-   
-4. **Code Blocks**: Wrap code snippets with backticks (`` ` ``) for inline code, or triple backticks (```` ``` ````) for multi-line code blocks:
-   - Inline: `` `code` ``
-   - Block: 
-     ```bash
-     command
-     ```
 
-5. **Lists**: Use `-` or `*` for unordered lists, and numbers for ordered lists:
-   - `- Item 1`
-   - `1. First item`
 
-This will ensure your text is properly formatted with different styles. GitHub automatically applies its own styles to the Markdown syntax, but it doesn’t support custom CSS or font size changes directly.
+
+
 
 
 
