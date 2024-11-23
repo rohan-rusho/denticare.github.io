@@ -57,7 +57,7 @@ if (isset($_COOKIE['admin_id'])) {
                     ?>
                     <h3><?= $num_of_services; ?></h3>
                     <p>View services</p>
-                    <a href="view_services.php" class="btn">View Services</a>
+                    <a href="view_service.php" class="btn">View Service</a>
                 </div>
 				<div class="box">
                     <?php
@@ -67,7 +67,7 @@ if (isset($_COOKIE['admin_id'])) {
                     ?>
                     <h3><?= $num_of_active_services; ?></h3>
                     <p>View active services</p>
-                    <a href="view_services.php" class="btn">View active Services</a>
+                    <a href="view_active_services.php" class="btn">View active Services</a>
                 </div>
 				<div class="box">
                     <?php
@@ -77,7 +77,7 @@ if (isset($_COOKIE['admin_id'])) {
                     ?>
                     <h3><?= $num_of_deactive_services; ?></h3>
                     <p>View deactive services</p>
-                    <a href="view_services.php" class="btn">View deactive Services</a>
+                    <a href="view_deactivated_services.php" class="btn">View deactive Services</a>
                 </div>
 				<div class="box">
                     <?php

@@ -4,26 +4,40 @@ include '../components/connect.php';
 if (isset($_COOKIE['admin_id'])) {
     $admin_id = $_COOKIE['admin_id'];
 } else {
-    $admin_id = '';
     header('location:login.php');
     exit;
 }
-   $get_id = $_GET['post_id'];
 
-   if(isset($_POST['delete'])){
-    $service_id = $_POST['service_id'];
-    $service_id = filter_var($service_id, FILTER_SANITIZE_STRING);
+$get_id = filter_var($_GET['post_id'], FILTER_SANITIZE_NUMBER_INT);
 
+if (isset($_POST['delete'])) {
+    $service_id = filter_var($_POST['service_id'], FILTER_SANITIZE_NUMBER_INT);
+
+    // Check if the service exists before attempting to delete
     $delete_image = $conn->prepare("SELECT * FROM `services` WHERE id = ?");
     $delete_image->execute([$service_id]);
     $fetch_delete_image = $delete_image->fetch(PDO::FETCH_ASSOC);
 
-    if ($fetch_delete_image[''] != ''){
-        unlink('../uploaded_files/'.$fetch_delete_image['image']);      
-    }
+    if ($fetch_delete_image) {
+        // Only delete image if it exists
+        if (!empty($fetch_delete_image['image'])) {
+            $image_path = '../uploaded_files/' . $fetch_delete_image['image'];
+            if (file_exists($image_path)) {
+                unlink($image_path);
+            }
+        }
 
-    $delete_service = $conn->prepare("DELETE FROM `services` WHERE id = ?");
-    header('location: view_service.php');
+        // Delete service from the database
+        $delete_service = $conn->prepare("DELETE FROM `services` WHERE id = ?");
+        $delete_service->execute([$service_id]);
+
+        header('location: view_service.php');
+        exit;
+    } else {
+        // Handle the case where the service doesn't exist
+        echo '<script>alert("Service not found!");</script>';
+        exit;
+    }
 }
 
 ?>
@@ -52,34 +66,40 @@ if (isset($_COOKIE['admin_id'])) {
             </div>
             <div class="container">
                 <?php
-                $select_services = $conn->prepare("SELECT * FROM `services` WHERE id =?");
+                $select_services = $conn->prepare("SELECT * FROM `services` WHERE id = ?");
                 $select_services->execute([$get_id]);
 
-                  if ($select_services->rowCount() > 0){
-                    while($fetch_service = $select_services->fetch(PDO::FETCH_ASSOC)){
-
-                    
+                if ($select_services->rowCount() > 0) {
+                    while ($fetch_service = $select_services->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 <form action="" method="post" class="box">
                     <input type="hidden" name="service_id" value="<?= $fetch_service['id']; ?>">
                     <div class="status" style="color: <?= ($fetch_service['status'] == 'active') ? 'limegreen' : 'red'; ?>;">
-                            <?= $fetch_service['status']; ?>
-                        </div>
-                        <?php if($fetch_service['image'] != '') { ?>
-                            <img src="../uploaded_files/<?= $fetch_service['image']; ?>" class="image">
-                     <?php } ?>
-                     <p class="price">$<?= $fetch_service['price']; ?></p>
-                     <div class="name">$<?= $fetch_service['name']; ?></div>
-                     <div class="content"><?= $fetch_service['service_details']; ?></div>
-                     <div class="flex-btn">
+                        <?= $fetch_service['status']; ?>
+                    </div>
+                    <?php if (!empty($fetch_service['image'])) { ?>
+                        <img src="../uploaded_files/<?= $fetch_service['image']; ?>" class="image">
+                    <?php } ?>
+                    <p class="price">$<?= $fetch_service['price']; ?></p>
+                    <div class="name"><?= $fetch_service['name']; ?></div>
+                    <div class="content"><?= $fetch_service['service_details']; ?></div>
+                    <div class="flex-btn">
                         <a href="edit_service.php?id=<?= $fetch_service['id']; ?>" class="btn">edit</a>
-                         <button type="submit" name="delete" class="btn" onclick="return confirm('Delete this service?');">delete</button>
+                        <button type="submit" name="delete" class="btn" onclick="return confirm('Delete this service?');">delete</button>
                         <a href="view_service.php?post_id=<?= $fetch_service['id']; ?>" class="btn">go back</a>
-                            </div>
+                    </div>
                 </form>
                 <?php 
-                      } 
-                   }
+                    } 
+                } else {
+                    echo '
+                    <div class="empty">
+                        <p>No services added yet! <br> 
+                        <a href="add_service.php" class="btn" style="margin-top: 1rem;">add service</a>
+                        </p>
+                    </div>
+                    ';
+                }
                 ?>
             </div>
         </section>
