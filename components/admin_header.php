@@ -18,7 +18,7 @@
         if ($select_profile->rowCount() > 0) {
             $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
         ?>
-            <div class="profile">
+           <div class="profile">
                 <img src="../uploaded_files/<?= $fetch_profile['image']; ?>" class="logo-img" alt="Profile Picture">
                 <p><?= $fetch_profile['name']; ?></p>
             </div>
