@@ -110,7 +110,7 @@ This will ensure your text is properly formatted with different styles. GitHub a
 Connect with Me
 Facebook
 Instagram
-- [Facebook](https://www.facebook.com/eita.roahn)
+- [Facebook](https://www.facebook.com/eita.rohan)
 - [Instagram](https://www.instagram.com/rohan.rusho)
 
 
