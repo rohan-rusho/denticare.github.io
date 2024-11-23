@@ -567,6 +567,193 @@ header.right {
 	width: 100%;
 }
 
+.message-container .box-container .box {
+	line-height: 2;
+	padding: 2rem;
+	border-radius: .5rem;
+}
+
+.message-container .box-container .box:hover {
+	box-shadow: var(--box-shadow);
+
+}
+
+.message-container .box-container .box .name {
+	text-transform: capitalize;
+	font-size: 1.5rem;
+}
+
+.message-container .box-container .box h4 {
+	text-transform: capitalize;
+	font-weight: 500;
+	color: orange;
+}
+
+.message-container .box-container .box p {
+	text-transform: capitalize;
+	margin-bottom: 1rem;
+}
+
+.appointment-container .box-container .box {
+	padding: 1rem;
+	border-radius: .5rem;
+	position: relative;
+}
+
+.appointment-container .box-container .box .flex-btn .btn {
+	width: 100%;
+	text-align: center;
+	border: none;
+}
+
+.appointment-container .box-container .box .status {
+	position: absolute;
+	text-transform: uppercase;
+	font-size: 1rem;
+	margin-bottom: 1rem;
+	display: inline-block;
+	border-radius: .5rem;
+	background-color: var(--white-alfa-40);
+	box-shadow: var(--box-shadow);
+	padding: .5rem;
+}
+
+.appointment-container .box-container .box .detail {
+	margin-top: 3rem;
+	line-height: 2;
+	text-transform: capitalize;
+}
+
+.appointment-container .box-container .box span {
+	text-transform: none;
+	color: orange;
+}
+
+.employee {
+	display: flex;
+	align-items: center;
+	line-height: 2;
+	text-transform: capitalize;
+
+}
+
+.employee img {
+	position: absolute;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	right: 2%;
+	top: 5%;
+	border: 4px solid orange;
+
+}
+
+.accounts .box-container {
+	margin-top: 3rem;
+
+}
+
+.accounts .box-container .box {
+	text-align: center;
+	padding: 2rem;
+	border-radius: .5rem;
+	text-transform: capitalize;
+	line-height: 2;
+	margin-bottom: 4rem;
+	transition: 5s;
+}
+
+.accounts .box-container .box span {
+	text-transform: none;
+	color: orange;
+}
+
+.accounts .box-container .box img {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	box-shadow: var(--box-shadow);
+	padding: .5rem;
+	margin-top: -5rem;
+	margin-bottom: 1rem;
+}
+
+.accounts .box-container .box:hover {
+	box-shadow: none;
+	border: 5px solid var(--white-alfa-40);
+
+}
+
+.profile-container .details {
+	background-color: var(--white-alfa-25);
+	border: 4px solid var(--white-alfa-40);
+	box-shadow: var(--box-shadow);
+	backdrop-filter: var(--backdrop-filter);
+	text-align: center;
+	border-radius: .5rem;
+	padding: 1rem;
+}
+
+.profile-container .details .admin {
+	margin-bottom: 2rem;
+}
+
+.profile-container .details img {
+	width: 10rem;
+	height: 10rem;
+	border-radius: 50%;
+	margin-bottom: .5rem;
+	padding: .5rem;
+	padding: .5rem;
+	background-color: var(--main-color);
+}
+
+.profile-container .details .admin h3 {
+	font-size: 1.5rem;
+	margin: .5rem 0;
+	text-transform: capitalize;
+}
+
+.profile-container .details .admin span {
+	font-size: 1.3rem;
+	display: block;
+	margin-bottom: 2rem;
+	text-transform: capitalize;
+}
+
+.profile-container .details .flex {
+	display: flex;
+	gap: 1.5rem;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 4rem 0;
+}
+
+.profile-container .details .flex .box {
+	flex: 1 1 25rem;
+	border-radius: .5rem;
+	background-color: #ccc3;
+	padding: 3rem;
+}
+
+.profile-container .details .flex span {
+	color: var(--main-color);
+	display: block;
+	margin-bottom: .5rem;
+	font-size: 2.5rem;
+	text-transform: capitalize;
+}
+
+.profile-container .details .flex .box p {
+	font-size: 2rem;
+	text-transform: capitalize;
+	padding: .5rem 0;
+	margin-bottom: 1rem;
+}
+
+
+
+
 .show-container h2 {
 	text-align: center;
 	text-transform: capitalize;
@@ -615,6 +802,9 @@ header.right {
 	border-radius: .5rem;
 	padding: 2rem;
 	box-shadow: var(--box-shadow);
+	background-color: var(--white-alfa-25);
+	border: 3px solid var(--white-alfa-40);
+	backdrop-filter: var(--backdrop-filter);
 	position: relative;
 }
 
@@ -648,14 +838,19 @@ header.right {
 }
 
 .read-container form .email {
-	text-transform: uppercase;
+	text-transform: capitalize;
 	text-align: center;
-	line-height: 1.5;
+	line-height: 1.7;
 }
 
 .read-container form .profession {
-	text-transform: uppercase;
+	text-transform: capitalize;
 	text-align: center;
+	line-height: 1.7;
+}
+
+.read-container span {
+	color: red;
 }
 
 .read-container form .content {
