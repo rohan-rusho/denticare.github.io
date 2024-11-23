@@ -110,11 +110,8 @@ This will ensure your text is properly formatted with different styles. GitHub a
 Connect with Me
 Facebook
 Instagram
-sql
-Copy code
-
-Now, your Facebook and Instagram links are included in the **Connect with Me** section at the end of the README file!
-
+- [Facebook](https://www.facebook.com/eita.roahn)
+- [Instagram](https://www.instagram.com/rohan.rusho)
 
 
 
