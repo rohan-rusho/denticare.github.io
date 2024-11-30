@@ -1,6 +1,7 @@
 <?php 
 include '../components/connect.php';
 
+// Check if the admin is logged in via cookie
 if (isset($_COOKIE['admin_id'])) {
     $admin_id = $_COOKIE['admin_id'];
 } else {
@@ -8,7 +9,12 @@ if (isset($_COOKIE['admin_id'])) {
     exit;
 }
 
-$get_id = filter_var($_GET['post_id'], FILTER_SANITIZE_NUMBER_INT);
+// Validate the 'post_id' parameter from the URL
+$get_id = isset($_GET['post_id']) ? filter_var($_GET['post_id'], FILTER_SANITIZE_NUMBER_INT) : null;
+if (!$get_id) {
+    echo '<script>alert("Invalid service ID!"); window.history.back();</script>';
+    exit;
+}
 
 if (isset($_POST['delete'])) {
     $service_id = filter_var($_POST['service_id'], FILTER_SANITIZE_NUMBER_INT);
@@ -35,7 +41,7 @@ if (isset($_POST['delete'])) {
         exit;
     } else {
         // Handle the case where the service doesn't exist
-        echo '<script>alert("Service not found!");</script>';
+        echo '<script>alert("Service not found!"); window.history.back();</script>';
         exit;
     }
 }
@@ -66,6 +72,7 @@ if (isset($_POST['delete'])) {
             </div>
             <div class="container">
                 <?php
+                // Fetch the service details from the database using the sanitized 'post_id'
                 $select_services = $conn->prepare("SELECT * FROM `services` WHERE id = ?");
                 $select_services->execute([$get_id]);
 
@@ -94,8 +101,8 @@ if (isset($_POST['delete'])) {
                 } else {
                     echo '
                     <div class="empty">
-                        <p>No services added yet! <br> 
-                        <a href="add_service.php" class="btn" style="margin-top: 1rem;">add service</a>
+                        <p>No services found! <br> 
+                        <a href="add_service.php" class="btn" style="margin-top: 1rem;">Add Service</a>
                         </p>
                     </div>
                     ';
