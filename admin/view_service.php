@@ -4,19 +4,37 @@ include '../components/connect.php';
 if (isset($_COOKIE['admin_id'])) {
     $admin_id = $_COOKIE['admin_id'];
 } else {
-    $admin_id = '';
     header('location:login.php');
     exit;
 }
 
+$success_msg = []; // Initialize success message array
+
 if (isset($_POST['delete'])) {
-    $service_id = $_POST['service_id'];
-    $service_id = filter_var($service_id, FILTER_SANITIZE_STRING);
+    $service_id = filter_var($_POST['service_id'], FILTER_SANITIZE_NUMBER_INT);
 
-    $delete_service = $conn->prepare("DELETE FROM `services` WHERE id = ?");
-    $delete_service->execute([$service_id]);
+    // Check if the service exists before attempting to delete
+    $check_service = $conn->prepare("SELECT * FROM `services` WHERE id = ?");
+    $check_service->execute([$service_id]);
+    $fetch_service = $check_service->fetch(PDO::FETCH_ASSOC);
 
-    $success_msg[] = 'Service deleted successfully';
+    if ($fetch_service) {
+        // Delete the associated image if it exists
+        if (!empty($fetch_service['image'])) {
+            $image_path = '../uploaded_files/' . $fetch_service['image'];
+            if (file_exists($image_path)) {
+                unlink($image_path);
+            }
+        }
+
+        // Delete the service
+        $delete_service = $conn->prepare("DELETE FROM `services` WHERE id = ?");
+        $delete_service->execute([$service_id]);
+
+        $success_msg[] = 'Service deleted successfully';
+    } else {
+        $success_msg[] = 'Service not found';
+    }
 }
 ?>
 
@@ -44,6 +62,13 @@ if (isset($_POST['delete'])) {
             </div>
             <div class="box-container">
                 <?php
+                // Display success messages
+                if (!empty($success_msg)) {
+                    foreach ($success_msg as $msg) {
+                        echo '<div class="success-msg">' . htmlspecialchars($msg) . '</div>';
+                    }
+                }
+
                 $select_services = $conn->prepare("SELECT * FROM `services`");
                 $select_services->execute();
 
@@ -52,26 +77,26 @@ if (isset($_POST['delete'])) {
                 ?>
                 <div class="box">
                     <form action="" method="post" class="box">
-                        <input type="hidden" name="service_id" value="<?= $fetch_services['id']; ?>">
+                        <input type="hidden" name="service_id" value="<?= htmlspecialchars($fetch_services['id']); ?>">
                         <?php if($fetch_services['image'] != '') { ?>
-                            <img src="../uploaded_files/<?= $fetch_services['image']; ?>" class="image">
+                            <img src="../uploaded_files/<?= htmlspecialchars($fetch_services['image']); ?>" class="image">
                         <?php } ?>
                         <div class="status" style="color: <?= ($fetch_services['status'] == 'active') ? 'limegreen' : 'red'; ?>;">
-                            <?= $fetch_services['status']; ?>
+                            <?= htmlspecialchars($fetch_services['status']); ?>
                         </div>
-                        <p class="price">$<?= $fetch_services['price']; ?></p>
+                        <p class="price">$<?= htmlspecialchars($fetch_services['price']); ?></p>
                         <div class="content">
-                            <div class="title"><?= $fetch_services['name']; ?></div>
+                            <div class="title"><?= htmlspecialchars($fetch_services['name']); ?></div>
                             <div class="flex-btn">
-                                <a href="edit_service.php?id=<?= $fetch_services['id']; ?>" class="btn">edit</a>
+                                <a href="edit_service.php?id=<?= htmlspecialchars($fetch_services['id']); ?>" class="btn">edit</a>
                                 <button type="submit" name="delete" class="btn" onclick="return confirm('Delete this service?');">delete</button>
-                                <a href="read_service.php?post_id=<?= $fetch_services['id']; ?>" class="btn">read</a>
+                                <a href="read_service.php?post_id=<?= htmlspecialchars($fetch_services['id']); ?>" class="btn">read</a>
                             </div>
                         </div>
                     </form>
                 </div>
                 <?php
-                   }
+                    }
                 } else {
                     echo '
                     <div class="empty">
