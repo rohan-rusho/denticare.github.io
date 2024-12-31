@@ -3,6 +3,7 @@
 ## Overview
 
 The **Dental Management System** is a comprehensive web application designed to help dental clinics manage patient information, appointments, treatments, and other clinic operations. The system allows staff to easily track patient details, manage appointments, and maintain treatment histories.
+![image](https://github.com/user-attachments/assets/222f3fc6-1fca-479e-86fa-fc9ed94a4465)
 
 ## Features
 
@@ -21,6 +22,7 @@ The **Dental Management System** is a comprehensive web application designed to 
 - **Authentication**: Secure login system for both admin and staff users
 
 ## Installation
+![image](https://github.com/user-attachments/assets/16e3e0b3-2128-4ccd-8270-b12b194bf352)
 
 ### Prerequisites
 
@@ -44,6 +46,7 @@ Import the Database:
 
 Import the database structure and sample data into the dental_db database.
 Configure Database Connection:
+![image](https://github.com/user-attachments/assets/2d50178e-90ec-48ba-9f61-de746327c691)
 
 Edit the config.php file in the root directory to include your database connection details:
 php
@@ -53,6 +56,7 @@ define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'dental_db');
 Start the XAMPP Server:
+![image](https://github.com/user-attachments/assets/e3d8e81d-68c4-4cc9-a52c-f68ca401e6f2)
 
 Start Apache and MySQL from the XAMPP control panel.
 Access the Application:
@@ -65,6 +69,8 @@ Password: adminpassword
 As the admin, you can manage patients, appointments, and other clinic operations.
 Staff Login:
 Username: staff
+![image](https://github.com/user-attachments/assets/d5726688-2a13-4187-9fb8-4defbfc0a157)
+
 Password: staffpassword
 Staff members can view and update patient appointments and treatment records.
 Contributing
@@ -74,6 +80,7 @@ Make your changes and commit them with descriptive messages.
 Push your changes and submit a pull request.
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
+![image](https://github.com/user-attachments/assets/a641ee1f-20d9-4852-bd90-6f3634e9ab07)
 
 markdown
 Copy code
