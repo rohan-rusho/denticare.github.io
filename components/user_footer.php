@@ -8,28 +8,28 @@
     <div class="box">
       <h3>my account</h3>
       <ul>
-        <li><a href=""><i class="bx bx-chevron-right"></i>my account</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>appointments</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>contact us</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>newsletter</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>my account</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>appointments</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>contact us</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>newsletter</a></li>
       </ul>
     </div>
     <div class="box">
       <h3>information</h3>
       <ul>
-        <li><a href=""><i class="bx bx-chevron-right"></i>about us</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>our team</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>privacy policy</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>terms & condition</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>about us</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>our team</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>privacy policy</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>terms & condition</a></li>
       </ul>
     </div>
     <div class="box">
       <h3>services</h3>
       <ul>
-        <li><a href=""><i class="bx bx-chevron-right"></i>our doctors</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>affiliate</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>special</a></li>
-        <li><a href=""><i class="bx bx-chevron-right"></i>choose us</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>our doctors</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>affiliate</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>special</a></li>
+        <li><a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bx-chevron-right"></i>choose us</a></li>
       </ul>
     </div>
     <div class="box">
@@ -38,10 +38,10 @@
       <p><i class="bx bxs-envelope"></i>rohan.rusho@gmail.com</p>
       <p><i class="bx bxs-location-plus"></i>Dhaka, Bangladesh</p>
       <div class="icons">
-        <i class="bx bxl-facebook"></i>
-        <i class="bx bxl-instagram"></i>
-        <i class="bx bxl-twitter"></i>
-        <i class="bx bxl-linkedin"></i>
+        <a href="https://www.facebook.com/eita.rohan" target="_blank"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/rohan.rusho/" target="_blank"><i class="bx bxl-instagram"></i></a>
+        <a href="https://www.threads.net/@rohan.rusho" target="_blank"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/rohan-rusho/" target="_blank"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
   </div>

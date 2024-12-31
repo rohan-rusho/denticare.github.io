@@ -317,7 +317,7 @@ input[type='submit']:hover {
 }
 
 .header {
-	padding: .5rem 4%;
+	padding: 0.5rem 4%;
 	background-color: #fff;
 	position: sticky;
 	top: 0;
@@ -325,14 +325,54 @@ input[type='submit']:hover {
 	right: 0;
 	z-index: 1000;
 	box-shadow: var(--box-shadow);
+	display: flex;
+	align-items: center;
+	/* Center content vertically */
+	height: 70px;
+	/* Set a consistent height for alignment */
 }
 
 .header .flex {
-	padding: .0rem 2rem;
-	position: relative;
+	width: 100%;
+	max-width: 1200px;
+	/* Adjust to your layout's needs */
+	margin: 0 auto;
 	display: flex;
-	align-content: center;
+	align-items: center;
+	/* Center items vertically */
 	justify-content: space-between;
+}
+
+.header .navbar {
+	display: flex;
+	align-items: center;
+	/* Center links vertically */
+	margin: 0;
+}
+
+.header .navbar a {
+	color: var(--main-color);
+	font-size: 1.3rem;
+	margin: 0 0.8rem;
+	text-transform: capitalize;
+	display: flex;
+	align-items: center;
+	/* Ensure links are vertically centered */
+}
+
+.header .navbar a:hover {
+	color: var(--pink-color);
+}
+
+.header .flex .icons,
+.header a i {
+	font-size: 2rem;
+	cursor: pointer;
+	color: var(--main-color);
+	margin-left: 0.5rem;
+	display: flex;
+	align-items: center;
+	/* Center icons vertically */
 }
 
 .header .flex .search-form {
@@ -347,7 +387,7 @@ input[type='submit']:hover {
 	border-bottom: 1px solid #ccc;
 	background-color: #fff;
 	clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-	transition: .2s linear;
+	transition: 0.2s linear;
 }
 
 .header .flex .search-form.active {
@@ -360,24 +400,10 @@ input[type='submit']:hover {
 	cursor: pointer;
 	background-color: transparent;
 	border: none;
-	margin-right: .5rem;
-}
-
-.search-btn {
-	margin-right: .5rem;
-}
-
-.header .flex .icons,
-.header a i {
-	font-size: 2rem;
-	cursor: pointer;
-	color: var(--main-color);
-	margin-left: .5rem;
-}
-
-#menu-btn {
-	display: none;
-	margin-right: .5rem;
+	margin-right: 0.5rem;
+	display: flex;
+	align-items: center;
+	/* Center button content */
 }
 
 .header .flex .profile {
@@ -386,10 +412,10 @@ input[type='submit']:hover {
 	align-items: center;
 	justify-content: center;
 	position: absolute;
-	top: 120%;
+	top: calc(100% + 10px);
 	right: 0;
 	background-color: #fff;
-	border-radius: .5rem;
+	border-radius: 0.5rem;
 	padding: 1rem;
 	text-align: center;
 	width: 23rem;
@@ -401,18 +427,18 @@ input[type='submit']:hover {
 
 .header .flex .profile.active {
 	transform: scale(1);
-	transition: .2s linear;
+	transition: 0.2s linear;
 }
 
 .header .flex .profile img {
 	background-image: var(--main-color);
-	padding: .6rem;
-	height: 8rem;
-	;
-	width: 8rem;
+	padding: 0.6rem;
+	height: 6rem;
+	/* Adjusted for better vertical alignment */
+	width: 6rem;
 	border-radius: 50%;
 	object-fit: cover;
-	margin-bottom: .5rem;
+	margin-bottom: 0.5rem;
 }
 
 .header .flex .profile h3 {
@@ -424,21 +450,6 @@ input[type='submit']:hover {
 	font-size: 1.6rem;
 }
 
-.header .navbar {
-	display: flex;
-	margin: .5rem 0;
-}
-
-.header .navbar a {
-	color: var(--main-color);
-	font-size: 1.3rem;
-	margin: 0 .5rem;
-	text-transform: capitalize;
-}
-
-.header .navbar a:hover {
-	color: var(--pink-color);
-}
 
 footer {
 	background-image: url('../image/footer.jpg');
@@ -848,6 +859,22 @@ footer .bottom {
 .service .box-container .box img {
 	width: 80px;
 	margin-right: 1rem;
+}
+
+.price {
+	display: inline-block;
+	font-size: 1.5rem;
+	color: red;
+	/* Price color */
+	background: rgba(255, 255, 255, 0.8);
+	/* Semi-transparent white background */
+	padding: 0.5rem 1rem;
+	/* Padding around the text */
+	border-radius: 10px;
+	/* Rounded corners */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	/* Shadow effect */
+	font-weight: bold;
 }
 
 .care-container {
@@ -1472,11 +1499,30 @@ footer .bottom {
 	text-align: center;
 }
 
+/* 
 .show-container .box-container .box:hover .image {
 	width: 100%;
 	height: 30rem;
 	object-fit: cover;
 	transition: .5s;
+} */
+
+.show-container .box-container .box:hover .image {
+	transform: scale(1.05);
+	/* Slight zoom effect for smooth transition */
+	transition: transform 0.5s ease-in-out;
+	/* Smooth transition */
+	object-fit: cover;
+	/* Maintain image proportions */
+}
+
+.show-container .box-container .box .image {
+	width: 100%;
+	/* Ensure consistent width */
+	height: auto;
+	/* Maintain image aspect ratio */
+	transition: transform 0.5s ease;
+	/* Avoid rapid resizing */
 }
 
 .show-container .box-container .box .content {
@@ -1492,9 +1538,15 @@ footer .bottom {
 	padding-top: .3rem;
 }
 
+/* .show-container .box-container .box:hover .content {
+	height: 10rem;
+	padding-top: 1rem;
+} */
+
 .show-container .box-container .box:hover .content {
 	height: 10rem;
 	padding-top: 1rem;
+	transition: height 0.5s ease-in-out, padding-top 0.5s ease-in-out;
 }
 
 .show-container .box-container .box .price {
@@ -1593,12 +1645,22 @@ footer .bottom {
 	background-position: center;
 	background-size: cover;
 	background-attachment: fixed;
-
 }
 
 .summary {
 	padding: 5rem 0;
+	display: flex;
+	/* Enable flexbox */
+	justify-content: center;
+	/* Center horizontally */
+	align-items: center;
+	/* Center vertically (optional, if needed) */
+	flex-direction: column;
+	/* Ensure content stacks vertically */
+	text-align: center;
+	/* Center text inside */
 }
+
 
 .summary .container {
 	max-width: 60rem;
@@ -1606,7 +1668,7 @@ footer .bottom {
 	border: 4px solid var(--white-alfa-40);
 	box-shadow: var(--box-shadow);
 	backdrop-filter: var(--backdrop-filter);
-	border-radius: .5rem;
+	border-radius: 0.5rem;
 	padding: 2rem;
 	margin-top: 2rem;
 	text-align: center;
@@ -1620,44 +1682,64 @@ footer .bottom {
 	text-align: center;
 }
 
-.summary flex {
-	position: relative;
+.summary .flex {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 }
 
-.summary .flex .img {
-	width: 30rem;
+.summary .flex img {
+	width: 100%;
+	/* Responsive width */
+	max-width: 80rem;
+	/* Increased maximum width for a larger image */
+	height: auto;
+	/* Maintain aspect ratio */
+	border-radius: 0.5rem;
 	box-shadow: var(--box-shadow);
-	padding: .4rem;
-	margin-right: 2rem;
-}
-
-.summary .flex .name {
-	font-size: 2.1 rem;
-	padding: 1rem 0;
-	text-transform: capitalize;
-	font-weight: 500;
-
+	position: relative;
+	margin-bottom: 1rem;
+	/* Space between the image and treatment name */
 }
 
 .summary .flex .price {
 	position: absolute;
-	top: 4%;
-	right: 20%;
-	font-size: 2.5rem;
+	top: 20px;
+	/* Position relative to the top of the image */
+	right: 20px;
+	/* Position relative to the right of the image */
+	background-color: rgba(255, 255, 255, 0.8);
+	/* Slightly transparent background */
 	color: red;
-	font-weight: bolder;
+	font-size: 3rem;
+	/* Larger font size for the price */
+	font-weight: bold;
+	padding: 0.5rem 1rem;
+	/* Increased padding for better visibility */
+	border-radius: 0.5rem;
+	box-shadow: var(--box-shadow);
+}
+
+.summary .flex .name {
+	font-size: 2.5rem;
+	/* Increased font size for the treatment name */
+	font-weight: 600;
+	text-transform: capitalize;
+	margin-top: 1rem;
+	color: var(--main-color);
 }
 
 .summary .grand-total {
 	box-shadow: var(--box-shadow);
-	border-radius: .5rem;
-	padding: 2 rem;
+	border-radius: 0.5rem;
+	padding: 2rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 	font-size: 2rem;
-	margin-top: 1.5 rem;
+	margin-top: 1.5rem;
 	text-transform: capitalize;
 }
 

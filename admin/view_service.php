@@ -4,11 +4,11 @@ include '../components/connect.php';
 if (isset($_COOKIE['admin_id'])) {
     $admin_id = $_COOKIE['admin_id'];
 } else {
-    header('location:login.php');
+    header('Location: login.php', true, 302);
     exit;
 }
 
-$success_msg = []; // Initialize success message array
+$delete_msg = []; // Initialize success message array
 
 if (isset($_POST['delete'])) {
     $service_id = filter_var($_POST['service_id'], FILTER_SANITIZE_NUMBER_INT);
@@ -31,9 +31,9 @@ if (isset($_POST['delete'])) {
         $delete_service = $conn->prepare("DELETE FROM `services` WHERE id = ?");
         $delete_service->execute([$service_id]);
 
-        $success_msg[] = 'Service deleted successfully';
+        $delete_msg[] = 'Service deleted successfully';
     } else {
-        $success_msg[] = 'Service not found';
+        $delete_msg[] = 'Service not found';
     }
 }
 ?>
@@ -44,12 +44,10 @@ if (isset($_POST['delete'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DentiCare - Dental Clinic Website</title>
+    <title>DentiCare - Our Services</title>
 
-    <!-- Font Awesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/admin_style.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin_style.css?v=<?php echo filemtime('../css/admin_style.css'); ?>">
     <link rel="icon" href="../image/favicon.ico" type="image/x-icon">
 </head>
 <body style="padding-left: 0;">
@@ -58,29 +56,28 @@ if (isset($_POST['delete'])) {
         
         <section class="show-container">
             <div class="heading">
-                <h1><img src="../image/separator.png">Your Services<img src="../image/separator.png"></h1>
+                <h1><img src="../image/separator.png">Our Services<img src="../image/separator.png"></h1>
             </div>
             <div class="box-container">
                 <?php
                 // Display success messages
-                if (!empty($success_msg)) {
-                    foreach ($success_msg as $msg) {
+                if (!empty($delete_msg)) {
+                    foreach ($delete_msg as $msg) {
                         echo '<div class="success-msg">' . htmlspecialchars($msg) . '</div>';
                     }
                 }
 
+                // Fetch services with optional pagination
                 $select_services = $conn->prepare("SELECT * FROM `services`");
                 $select_services->execute();
 
-                if($select_services->rowCount() > 0) {
-                    while($fetch_services = $select_services->fetch(PDO::FETCH_ASSOC)) {
+                if ($select_services->rowCount() > 0) {
+                    while ($fetch_services = $select_services->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 <div class="box">
                     <form action="" method="post" class="box">
                         <input type="hidden" name="service_id" value="<?= htmlspecialchars($fetch_services['id']); ?>">
-                        <?php if($fetch_services['image'] != '') { ?>
-                            <img src="../uploaded_files/<?= htmlspecialchars($fetch_services['image']); ?>" class="image">
-                        <?php } ?>
+                        <img src="<?= !empty($fetch_services['image']) ? '../uploaded_files/' . htmlspecialchars($fetch_services['image']) : '../image/placeholder.png'; ?>" class="image">
                         <div class="status" style="color: <?= ($fetch_services['status'] == 'active') ? 'limegreen' : 'red'; ?>;">
                             <?= htmlspecialchars($fetch_services['status']); ?>
                         </div>
@@ -100,7 +97,8 @@ if (isset($_POST['delete'])) {
                 } else {
                     echo '
                     <div class="empty">
-                        <p>No services added yet <br> <a href="add_service.php" class="btn" style="margin-top: 1rem;">Add Service</a></p>
+                        <p>No services added yet.</p>
+                        <a href="add_service.php" class="btn" style="margin-top: 1rem;">Add Service</a>
                     </div>
                     ';
                 }
@@ -109,12 +107,8 @@ if (isset($_POST['delete'])) {
         </section>
     </div>
 
-    <!-- SweetAlert CDN Link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
-    <!-- Custom JS Link -->
     <script type="text/javascript" src="../js/admin_script.js"></script>
-
     <?php include '../components/alert.php'; ?>
 </body>
 </html>

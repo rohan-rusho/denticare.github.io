@@ -107,7 +107,7 @@ if (isset($_COOKIE['admin_id'])) {
                       ?>
                      <h3><?= $num_of_canceled_appointments; ?></h3>
                      <p>View canceled appointments</p>
-                     <a href="admin_appointments.php" class="btn">View canceled appointments</a>
+                     <a href="cancel_appointments.php" class="btn">View canceled appointments</a>
                 </div>
 				<div class="box">
                     <?php

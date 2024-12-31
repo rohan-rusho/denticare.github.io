@@ -1,3 +1,16 @@
+<?php
+include 'components/connect.php';
+
+// Retrieve user_id from the cookie
+$user_id = isset($_COOKIE['user_id']) ? $_COOKIE['user_id'] : '';
+
+// Fetch user data if user_id is available
+if (!empty($user_id)) {
+    $query = $conn->prepare("SELECT * FROM `users` WHERE id = ? LIMIT 1");
+    $query->execute([$user_id]);
+    $fetch_profile = $query->fetch(PDO::FETCH_ASSOC);
+}
+?>
 
 <header class="header">
     <section class="flex">
@@ -10,20 +23,11 @@
             <a href="service.php">Services</a>
             <a href="contact.php">Contact</a>
         </nav>
-        <form action="search_service.php" method="post" class="search-form">
-            <input type="text" name="search_service" placeholder="Search services..." required maxlength="100">
-            <button type="submit" class="bx bx-search-alt-2" name="search_service_btn"></button>
-        </form>
         <div class="icons">
-            <div id="menu-btn" class="bx bx-menu"></div>
-            <div id="profile-btn" class="profile-btn">
-                <?php if (isset($user_profile)): ?>
-                    <!-- If the user is logged in, show their profile image -->
-                    <img src="uploaded_files/<?= htmlspecialchars($user_profile['image']); ?>" alt="Profile Picture" class="profile-img" onclick="toggleProfileDropdown()">
-                <?php else: ?>
-                    <!-- If the user is not logged in, show the default profile icon -->
-                    <img src="image/man.png" alt="Profile Picture" class="profile-img" onclick="toggleProfileDropdown()">
-                <?php endif; ?>
+            
+            <div id="profile-btn" class="profile-btn" onclick="toggleProfileDropdown()">
+                <!-- Show only the default profile picture -->
+                <img src="image/man.png" alt="Default Profile Picture" class="profile-img">
             </div>
         </div>
     </section>
@@ -32,17 +36,16 @@
 <!-- Profile Dropdown -->
 <div id="profile-dropdown" class="profile-dropdown">
     <div class="profile-dropdown-content">
-        <?php if (isset($user_profile)): ?>
-            <!-- If the user is logged in, show the profile image and logout button -->
-            <img src="uploaded_files/<?= htmlspecialchars($user_profile['image']); ?>" alt="Profile Picture" class="profile-dropdown-img">
-            <h3 class="profile-name"><?= htmlspecialchars($user_profile['name']); ?></h3>
+        <?php if (!empty($fetch_profile)): ?>
+            <!-- Show user photo and name in the dropdown -->
+            <img src="uploaded_files/<?= htmlspecialchars($fetch_profile['image']); ?>" alt="Profile Picture" class="profile-dropdown-img">
+            <h3><?= htmlspecialchars($fetch_profile['name']); ?></h3>
             <div class="flex-btn">
                 <a href="logout.php" onclick="return confirm('Are you sure you want to log out?');" class="btn">Logout</a>
             </div>
         <?php else: ?>
-            <!-- If the user is not logged in, show login and register buttons -->
-            <img src="image/man.png" alt="Default Profile Picture" class="profile-dropdown-img">
-            <h3 class="profile-name">Please login or register</h3>
+            <!-- Show login/register options in the dropdown -->
+            <h3>Please login or register</h3>
             <div class="flex-btn">
                 <a href="login.php" class="btn">Login</a>
                 <a href="register.php" class="btn">Register</a>
