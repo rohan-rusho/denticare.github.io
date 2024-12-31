@@ -157,10 +157,19 @@ if (isset($_POST['book_appointment'])) {
                             ?>
                         </select>
                     </div>
-                    <div class="input-field">
-                        <p>Select Date <span>*</span></p>
-                        <input type="date" name="date" class="box" required>
-                    </div>
+                    <?php
+                        // Set the timezone to your location
+                        date_default_timezone_set('Asia/Kolkata'); // Replace with your desired timezone
+
+                        // Get today's date in the format required for the min attribute
+                        $today = date('Y-m-d');
+                    ?>
+
+                        <div class="input-field">
+                            <p>Select Date <span>*</span></p>
+                            <!-- The min attribute is dynamically set to today's date -->
+                            <input type="date" name="date" class="box" required min="<?php echo $today; ?>">
+                        </div>
                     <div class="input-field">
                         <p>Select Time <span>*</span></p>
                         <select name="appointment_time" class="box select" required>
@@ -168,11 +177,13 @@ if (isset($_POST['book_appointment'])) {
                             <option value="10:00am">10:00 AM</option>
                             <option value="11:00am">11:00 AM</option>
                             <option value="12:00pm">12:00 PM</option>
+                            <option value="1:00pm" disabled>1:00 PM (Break)</option>
                             <option value="1:30pm">1:30 PM</option>
                             <option value="2:00pm">2:00 PM</option>
                             <option value="3:00pm">3:00 PM</option>
                             <option value="4:00pm">4:00 PM</option>
                             <option value="5:00pm">5:00 PM</option>
+                            <option value="6:00pm">6:00 PM</option>
                         </select>
                     </div>
                 </div>

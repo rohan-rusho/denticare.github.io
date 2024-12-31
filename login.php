@@ -1,46 +1,31 @@
-<?php
-session_start();  // Start the session to manage the user's login state
-
+<?php 
 include 'components/connect.php';
 
-// If the user is already logged in (via session), retrieve the session user ID
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-} else {
-    $user_id = '';
-}
+$error_msg = [];
+$success_msg = [];
 
 if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $email = filter_var($email, FILTER_SANITIZE_STRING);
-
-    $pass = sha1($_POST['pass']);  // Use SHA1 for password hashing
+    // Sanitize input
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+    $pass = sha1($_POST['pass']); // Hash password with SHA-1
     $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-    // Check if the user exists in the database
-    $select_users = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ? LIMIT 1");
-    $select_users->execute([$email, $pass]);
+    // Check user credentials in the database
+    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ? LIMIT 1");
+    $select_user->execute([$email, $pass]);
+    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
-    $row = $select_users->fetch(PDO::FETCH_ASSOC);
-
-    // If the user is found in the database
-    if ($select_users->rowCount() > 0) {
-        // Store user information in session
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['user_name'] = $row['name'];
-
-        // Optionally, set a cookie for remembering the user for 30 days (if required)
-        // setcookie('user_id', $row['id'], time() + 60 * 60 * 24 * 30, '/');
-
-        // Redirect to the home page after successful login
-        header('Location: home.php');
-        exit();  // Ensure the script stops after redirection
+    if ($select_user->rowCount() > 0) {
+        // Login success
+        setcookie('user_id', $row['id'], time() + 60 * 60 * 24 * 30, '/');
+        header('location:home.php'); // Redirect to homepage
+        exit;
     } else {
-        $warning_msg[] = 'Incorrect email or password';
+        // Login failed
+        $error_msg[] = 'Incorrect email or password';
     }
 }
 ?>
-
 
 
 <!DOCTYPE html>
@@ -72,6 +57,22 @@ if (isset($_POST['login'])) {
     <div class="form-container form">
         <form action="" method="post" class="login">
             <h3>Secure Login</h3>
+
+            <!-- Display Messages -->
+            <?php
+                if (!empty($success_msg)) {
+                     foreach ($success_msg as $msg) {
+                             echo '<div class="success-msg">' . htmlspecialchars($msg) . '</div>';
+                      }
+                      }
+
+                    // Display error messages (if any)
+                    if (!empty($error_msg)) {
+                        foreach ($error_msg as $msg) {
+                            echo '<div class="error-msg">' . htmlspecialchars($msg) . '</div>';
+                        }
+                    }
+                    ?>
 
             <div class="input-field">
                 <p>Email Address <span>*</span></p>
