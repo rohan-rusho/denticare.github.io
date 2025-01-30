@@ -57,7 +57,7 @@ Edit the `config.php` file in the root directory:
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'dental_db');
+define('DB_DATABASE', 'dental_db'); 
 ```
 
 6️⃣ **Start XAMPP Server:**  
