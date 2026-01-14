@@ -25,6 +25,10 @@ The **Dental Management System** is a comprehensive web application designed to 
 **Authentication:** Secure login system with role-based access  
 
 ---
+<img
+    src="ss/image1.png"
+    >
+
 
 ## 🚀 Installation Guide
 
